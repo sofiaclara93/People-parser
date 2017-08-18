@@ -7,6 +7,6 @@ module UserParser
     CSV.foreach(filename, :headers => true, :header_converters => :symbol) do |row|
       users << User.new(row.to_hash)
     end
-    return users 
+    return users
   end
 end
