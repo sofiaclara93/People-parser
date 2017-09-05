@@ -11,6 +11,9 @@ users = UserParser.parse('email.csv')
 domains = DomainParser.parse('domains.csv')
 
 
+domains.each do |d|
+  binding.pry
+end
 # def thing(domains)
 # binding.pry
 # end

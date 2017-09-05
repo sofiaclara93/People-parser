@@ -1,7 +1,5 @@
 require 'csv'
 
-require 'pry'
-require 'pry-byebug'
 
 module DomainParser
   def self.parse(filename)
@@ -11,5 +9,4 @@ module DomainParser
     end
     return domains
   end
-
 end
