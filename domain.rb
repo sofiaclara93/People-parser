@@ -1,23 +1,24 @@
-require 'pry'
-require 'pry-byebug'
-
 class Domain
 
-  attr_reader :domain, :ids
-  attr_writer :domain, :ids
+  attr_reader :domain, :ids, :product
+  attr_writer :domain, :ids, :product
 
   def initialize(args = {})
     @domain = new_domain(args)
+    @product = args.fetch(:product)
     @ids = new_ids(args.fetch(:ids))
   end
 
 # sets domain as domain_product to differentiate btwn products
   def new_domain(args)
     domain = args.fetch(:domain).chomp("(adminfly)")
-    product = args.fetch(:product)
-    return new_domain = domain.delete(domain[-1]) + "_" + product
+    # product = args.fetch(:product)
+    # return new_domain = domain.delete(domain[-1]) + "_" + product
+    return new_domain = domain.delete(domain[-1])
+
   end
 
+# sets ids in array stripping special characters and separating binded characters
   def new_ids(ids)
     ids_array = ids.split(/\W/)
     ids_array.each do |id|
