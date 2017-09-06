@@ -2,27 +2,16 @@ require 'csv'
 
 module FileWriter
   def self.write(users)
-  CSV.open('user_permissions.csv','wb ',
+  CSV.open('user_permissions.csv','wb',
       :write_headers=> true,
-      :headers => ["user_id","email","newsbeat", "report_builder", "headline_testing"] #< column header
+      :headers => ["user id","email","newsbeat", "report builder", "headline testing"] #< column header
+      # :return_headers => true
     ) do|csv|
-      binding.pry
+        users.each do |user|
+          # binding.pry
+          csv << [user.user_id, user.email, user.newsbeat.join(", "), user.report_builder.join(", "), user.headline_testing.join(", ")]
+        end
       end
   end
 
 end
-
-
-
-    #
-    # # Saves the data for each person
-    # # to the specified file.
-    # CSV.open(filename,"wb") do |csv|
-    #   people.each do |person|
-    #     person.each do |human|
-    #
-    #       # binding.pry
-    #       csv << human.csv_format.split(",")
-    #     end
-    #   end
-    # end
