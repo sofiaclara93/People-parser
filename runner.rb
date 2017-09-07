@@ -19,8 +19,7 @@ while true
   end
 
   FileCopier.email_copy(emails_answer)
-
-  puts "Please enter the filename containing the products list or 'quit':"
+  puts "\nPlease enter the filename containing the products list or 'quit':"
 
   products_answer =gets.chomp
   if products_answer === 'quit'
@@ -30,12 +29,12 @@ while true
   FileCopier.products_copy(products_answer)
 
 
-  # users = UserParser.parse('emails.csv')
-  # domains = DomainParser.parse('domains.csv')
-  #
-  # updated_users = DomainChecker.check(users , domains)
-  #
-  # FileWriter.write(updated_users)
+  users = UserParser.parse('emails.csv')
+  domains = DomainParser.parse('domains.csv')
 
+  updated_users = DomainChecker.check(users , domains)
 
+  FileWriter.write(updated_users)
+  puts "\nThe File has been created as 'user_permissions.csv'\n\n"
+  %x(open user_permissions.csv)
 end

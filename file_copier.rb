@@ -31,8 +31,13 @@ module FileCopier
       puts "File not found"
       # find way to break out of this without error
     elsif paths.length > 1
-      puts "More than one path exists for this file. Please choose and paste the correct file path:"
-      puts paths
+      puts "More than one path exists for this file. Please choose and paste the correct file path:\n"
+      i = 1
+      paths.each do |path|
+        puts "#{i}. #{path}"
+        i+= 1
+      end
+      # puts paths
       path = gets.chomp
       return path
     else
@@ -41,14 +46,15 @@ module FileCopier
   end
 
   def self.email_copy(filename)
-    puts "Thanks 😁"
-    puts "copying file #{filename}..."
+    puts "Thanks 😁 \ncopying file '#{filename}'..."
+
     FileUtils.cp find(filename) , "#{Dir.pwd}/emails.csv"
+    puts "Copy was successful 👍 "
   end
 
   def self.products_copy(filename)
-    puts "Thanks 😁"
-    puts "copying file #{filename}..."
+    puts "Thanks 😁 \ncopying file '#{filename}'..."
     FileUtils.cp find(filename) , "#{Dir.pwd}/domains.csv"
+    puts "Copy was successful 👍 "
   end
 end
