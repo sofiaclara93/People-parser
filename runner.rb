@@ -4,14 +4,28 @@ require_relative 'domain_parser'
 require_relative 'domain'
 require_relative 'domain_checker'
 require_relative 'file_writer'
+require_relative 'file_copier'
 
 require 'pry'
 require 'pry-byebug'
 
+# while true
 
-users = UserParser.parse('email.csv')
-domains = DomainParser.parse('domains.csv')
+  puts "Please enter the filename containing the emails or 'quit'"
 
-updated_users = DomainChecker.check(users , domains)
+  emails_answer = gets.chomp
+  # if emails_answer === 'quit'
+  #   break
+  # end
+  #
+  FileCopier.copy(emails_answer)
 
-FileWriter.write(updated_users)
+  # users = UserParser.parse('emails.csv')
+  # domains = DomainParser.parse('domains.csv')
+  #
+  # updated_users = DomainChecker.check(users , domains)
+  #
+  # FileWriter.write(updated_users)
+
+
+# end
