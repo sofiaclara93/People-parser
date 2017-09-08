@@ -4,35 +4,23 @@ require 'open-uri'
 require 'mechanize'
 
 
-# module UserParser
-#   def self.parse(filename)
-#     users = []
-#     CSV.foreach(filename, :headers => true, :header_converters => :symbol) do |row|
-#       users << User.new(row.to_hash)
-#     end
-#     return users
-#   end
-# end
-
-
-
 module UserScraper
-  def self.scrape
+  def self.scrape(user_session)
     agent = Mechanize.new
     # agent.pluggable_parser.pdf = Mechanize::FileSaver
-
-    page = agent.get("https://chartbeat.com/admin_nimda/account/view/57773/")
+    page = agent.get(user_session.admin_page_url)
     form = page.forms.first
-    form.username = "sofia@chartbeat.com"
-    form.password = "Mimi1553"
+    form.username = user_session.email
+    form.password = user_session.password
     page = form.submit
 
     verification_form = page.forms[2]
     puts "what is your verifcation code?"
     code = gets.chomp
-    verification_form.token = code
+    user_session.verification_code = code
+    verification_form.token = user_session.verification_code
     page = verification_form.submit
-    page = agent.get("https://chartbeat.com/admin_nimda/account/view/57773/")
+    page = agent.get(user_session.admin_page_url)
 
     data=[]
     i = 0

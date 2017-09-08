@@ -4,7 +4,9 @@ require_relative 'domain_scraper'
 require_relative 'domain'
 require_relative 'domain_checker'
 require_relative 'file_writer'
+require_relative 'user_session'
 
+require 'io/console'
 require 'pry'
 require 'pry-byebug'
 
@@ -27,11 +29,26 @@ while true
 
   # FileCopier.products_copy(products_answer)
 
+  puts "Username:"
+  email = gets.chomp
+
+  puts "Password:"
+  password = STDIN.noecho(&:gets).chomp
+
+  puts "Admin account page path:"
+
+  admin_page_url = gets.chomp
+
+  puts "Products page path:"
+
+  product_page_url = gets.chomp
+
+  user_session = UserSession.new(email, password, admin_page_url, product_page_url)
 
   # users = UserParser.parse('emails.csv')
-  users = UserScraper.scrape
+  users = UserScraper.scrape(user_session)
   # domains = DomainScraper.scrape('domains.csv')
-  domains = DomainScraper.scrape
+  domains = DomainScraper.scrape(user_session)
 
   updated_users = DomainChecker.check(users , domains)
 

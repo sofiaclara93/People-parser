@@ -8,22 +8,19 @@ require 'pry-byebug'
 
 
 module DomainScraper
-  def self.scrape
+  def self.scrape(user_session)
     agent = Mechanize.new
 
-    page = agent.get("https://chartbeat.com/admin_nimda/account/products/57773/")
+    page = agent.get(user_session.product_page_url)
     form = page.forms.first
-    form.username = "sofia@chartbeat.com"
-    form.password = "Mimi1553"
+    form.username = user_session.email
+    form.password = user_session.password
     page = form.submit
 
     verification_form = page.forms[2]
-    puts "what is your verifcation code?"
-    code = gets.chomp
-    # binding.pry
-    verification_form.token = code
+    verification_form.token = user_session.verification_code
     page = verification_form.submit
-    page = agent.get("https://chartbeat.com/admin_nimda/account/products/57773/")
+    page = agent.get(user_session.product_page_url)
 
     domains=[]
     i = 0
