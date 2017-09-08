@@ -10,9 +10,5 @@ class User
     @headline_testing = []
   end
 
-# FINISH LATER TO FORMAT PUSHING TO CSV WRITER FILE
-  # def csv_format
-  #   return "#{self.user_id},#{self.email},#{self.newsbeat},#{self.report_builder},#{self.headline_testing}"
-  # end
 
 end
