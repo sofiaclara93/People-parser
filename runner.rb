@@ -11,14 +11,14 @@ require 'pry-byebug'
 
 while true
 
-  puts "Please enter the filename containing the emails or 'quit':"
+  # puts "Please enter the filename containing the emails or 'quit':"
+  #
+  # emails_answer = gets.chomp
+  # if emails_answer === 'quit'
+  #   break
+  # end
 
-  emails_answer = gets.chomp
-  if emails_answer === 'quit'
-    break
-  end
-
-  FileCopier.email_copy(emails_answer)
+  # FileCopier.email_copy(emails_answer)
   # puts "\nPlease enter the filename containing the products list or 'quit':"
   #
   # products_answer =gets.chomp
@@ -29,7 +29,8 @@ while true
   # FileCopier.products_copy(products_answer)
 
 
-  users = UserParser.parse('emails.csv')
+  # users = UserParser.parse('emails.csv')
+  users = UserScraper.scrape
   # domains = DomainScraper.scrape('domains.csv')
   domains = DomainScraper.scrape
 

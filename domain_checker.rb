@@ -1,5 +1,3 @@
-require 'pry'
-require 'pry-byebug'
 module DomainChecker
 # checks if users is listed under domain permissions
 # if user has permission user is updated
