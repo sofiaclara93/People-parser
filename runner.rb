@@ -19,18 +19,19 @@ while true
   end
 
   FileCopier.email_copy(emails_answer)
-  puts "\nPlease enter the filename containing the products list or 'quit':"
+  # puts "\nPlease enter the filename containing the products list or 'quit':"
+  #
+  # products_answer =gets.chomp
+  # if products_answer === 'quit'
+  #   break
+  # end
 
-  products_answer =gets.chomp
-  if products_answer === 'quit'
-    break
-  end
-
-  FileCopier.products_copy(products_answer)
+  # FileCopier.products_copy(products_answer)
 
 
   users = UserParser.parse('emails.csv')
-  domains = DomainParser.parse('domains.csv')
+  # domains = DomainScraper.scrape('domains.csv')
+  domains = DomainScraper.scrape
 
   updated_users = DomainChecker.check(users , domains)
 
