@@ -1,10 +1,9 @@
-require_relative 'user_parser'
+require_relative 'user_scraper'
 require_relative 'user'
-require_relative 'domain_parser'
+require_relative 'domain_scraper'
 require_relative 'domain'
 require_relative 'domain_checker'
 require_relative 'file_writer'
-require_relative 'file_copier'
 
 require 'pry'
 require 'pry-byebug'
