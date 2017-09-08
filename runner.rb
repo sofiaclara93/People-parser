@@ -48,7 +48,7 @@ while true
   # users = UserParser.parse('emails.csv')
   users = UserScraper.scrape(user_session)
   # domains = DomainScraper.scrape('domains.csv')
-  domains = DomainScraper.scrape(user_session
+  domains = DomainScraper.scrape(user_session)
 
   updated_users = DomainChecker.check(users , domains)
 
