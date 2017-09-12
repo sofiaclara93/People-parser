@@ -10,5 +10,4 @@ class User
     @headline_testing = []
   end
 
-
 end
