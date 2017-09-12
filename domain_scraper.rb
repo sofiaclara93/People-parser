@@ -17,7 +17,7 @@ module DomainScraper
     form.password = user_session.password
     page = form.submit
 
-    verification_form = page.forms[2]
+    verification_form = page.forms[1]
     verification_form.token = user_session.verification_code
     page = verification_form.submit
     page = agent.get(user_session.product_page_url)

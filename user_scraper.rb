@@ -3,6 +3,8 @@ require 'nokogiri'
 require 'open-uri'
 require 'mechanize'
 
+require 'pry'
+require 'pry-byebug'
 
 module UserScraper
   def self.scrape(user_session)
@@ -12,9 +14,9 @@ module UserScraper
     form = page.forms.first
     form.username = user_session.email
     form.password = user_session.password
-    page = form.submit
+    page = page.form.submit
 
-    verification_form = page.forms[2]
+    verification_form = page.forms[1]
     puts "what is your verifcation code?"
     code = gets.chomp
     user_session.verification_code = code

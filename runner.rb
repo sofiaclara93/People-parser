@@ -7,17 +7,16 @@ require_relative 'file_writer'
 require_relative 'user_session'
 
 require 'io/console'
-require 'pry'
-require 'pry-byebug'
+
+puts "You will need to signin to Chartbeat. Please be ready to enter your two-factor verifcation code 😁"
 
 while true
+  puts "Please enter your Chartbeat email address or enter 'quit':"
 
-  # puts "Please enter the filename containing the emails or 'quit':"
-  #
-  # emails_answer = gets.chomp
-  # if emails_answer === 'quit'
-  #   break
-  # end
+  email = gets.chomp
+  if email === 'quit'
+    break
+  end
 
   # FileCopier.email_copy(emails_answer)
   # puts "\nPlease enter the filename containing the products list or 'quit':"
@@ -29,19 +28,25 @@ while true
 
   # FileCopier.products_copy(products_answer)
 
-  puts "Username:"
-  email = gets.chomp
 
-  puts "Password:"
+  puts "Please enter your password or enter 'quit':"
   password = STDIN.noecho(&:gets).chomp
+  if password === 'quit'
+    break
+  end
 
-  puts "Admin account page path:"
 
+  puts "Please paste the URL for the 'Account' page in Admin or enter 'quit':"
   admin_page_url = gets.chomp
+  if admin_page_url === 'quit'
+    break
+  end
 
-  puts "Products page path:"
-
+  puts "Please paste the URL for the 'Product' page in Admin or enter 'quit':"
   product_page_url = gets.chomp
+  if product_page_url === 'quit'
+    break
+  end
 
   user_session = UserSession.new(email, password, admin_page_url, product_page_url)
 
