@@ -2,6 +2,7 @@ require 'csv'
 require 'nokogiri'
 require 'open-uri'
 require 'mechanize'
+require 'io/console'
 
 require 'pry'
 require 'pry-byebug'
@@ -16,12 +17,24 @@ module UserScraper
     form.password = user_session.password
     page = page.form.submit
 
+    while page.forms[1].action != "/two-factor/verify" do
+      puts "Incorrect email or password 🙁. Please try again."
+      puts "Enter your Chartbeat email address please:"
+      user_session.email = gets.chomp
+      puts "Enter your password please:"
+      user_session.password = STDIN.noecho(&:gets).chomp
+      page.form.username = user_session.email
+      page.form.password = user_session.password
+      page = page.form.submit
+    end
+
     verification_form = page.forms[1]
     puts "what is your verifcation code?"
     code = gets.chomp
     user_session.verification_code = code
     verification_form.token = user_session.verification_code
     page = verification_form.submit
+    binding.pry
     page = agent.get(user_session.admin_page_url)
 
     data=[]
