@@ -24,12 +24,10 @@ module DomainScraper
 
     domains=[]
     i = 0
-    # binding.pry
     page.at('table.domainTable').search('tr').each do |tr|
       if i == 0
         i += 1
       else
-        # binding.pry
         domain = tr.children[1].text.chomp(" (adminfly)")
         product = tr.children[5].text
         uids = tr.children[7].children.text.tr_s("\n                            \n" , ",").split(",")

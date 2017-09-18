@@ -11,7 +11,7 @@ module UserScraper
   def self.scrape(user_session)
     agent = Mechanize.new
     # agent.pluggable_parser.pdf = Mechanize::FileSaver
-    page = agent.get(user_session.admin_page_url)
+    page = agent.get("https://chartbeat.com/signin")
     form = page.forms.first
     form.username = user_session.email
     form.password = user_session.password
@@ -29,12 +29,25 @@ module UserScraper
     end
 
     verification_form = page.forms[1]
-    puts "what is your verifcation code?"
-    code = gets.chomp
-    user_session.verification_code = code
+    if user_session.verification_code == ""
+      puts "what is your verifcation code?"
+      code = gets.chomp
+      user_session.verification_code = code
+    end
     verification_form.token = user_session.verification_code
     page = verification_form.submit
     # binding.pry
+    puts "Please enter the Account ID:"
+    uid = gets.chomp
+
+    admin_page_url = "https://chartbeat.com/admin_nimda/account/view/#{uid}/"
+
+    product_page_url = "https://chartbeat.com/admin_nimda/account/products/#{uid}/"
+
+    user_session.admin_page_url = admin_page_url
+
+    user_session.product_page_url = product_page_url
+
     page = agent.get(user_session.admin_page_url)
 
     data=[]
