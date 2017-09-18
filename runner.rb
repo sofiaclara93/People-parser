@@ -8,9 +8,10 @@ require_relative 'user_session'
 
 require 'io/console'
 
-puts "You will need to signin to Chartbeat. Please be ready to enter your two-factor verifcation code 😁"
+puts "You will need to sign in to Chartbeat. Please be ready to enter your two-factor verifcation code 😁"
 
 while true
+  
   puts "Please enter your Chartbeat email address or enter 'quit':"
 
   email = gets.chomp

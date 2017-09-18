@@ -34,7 +34,7 @@ module UserScraper
     user_session.verification_code = code
     verification_form.token = user_session.verification_code
     page = verification_form.submit
-    binding.pry
+    # binding.pry
     page = agent.get(user_session.admin_page_url)
 
     data=[]
@@ -43,10 +43,12 @@ module UserScraper
       if i == 0
         i += 1
       else
-        user_id = tr.children[1].text.chomp(" (adminfly)")
-        email = tr.children[13].children[1].children.children.text
-        hash = {user_id: user_id, email: email}
-        data << User.new(hash)
+        if tr.attributes["data-active"].value == "true"
+          user_id = tr.attributes["data-userid"].value
+          email = tr.attributes["data-email"].value
+          hash = {user_id: user_id, email: email}
+          data << User.new(hash)
+        end
       end
     end
     return data
