@@ -1,5 +1,5 @@
 source 'https://rubygems.org' do
   # Gems here
-  gem 'nokogiri', '~>1.6.8.1'
+  gem 'nokogiri', '~> 1.8'
   gem 'mechanize', '~> 2.7', '>= 2.7.5'
 end
