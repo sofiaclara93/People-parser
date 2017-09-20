@@ -1,6 +1,3 @@
-
-require 'pry'
-require 'pry-byebug'
 module FilePath
 
   def self.create(filename)
@@ -19,7 +16,7 @@ module FilePath
       when true
         puts "This file already exists. Choose another name:"
         filename = gets.chomp
-        setPath(current_directory, filename)
+        create(filename)
       else
         return filepath
     end
@@ -27,12 +24,3 @@ module FilePath
   end
 
 end
-#
-#
-# # ask for file name
-# # get downloads directory
-#   get current directory split by '/' get first two of array, append 'Download' to set new dir path
-#   check if file exists in download directory
-#   if so prompt for new file name until unique
-#     once unique create file
-#     move file to downloads folder
