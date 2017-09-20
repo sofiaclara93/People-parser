@@ -1,8 +1,5 @@
 require 'nokogiri'
-# require 'open-uri'
 require 'mechanize'
-
-
 
 module DomainScraper
 
