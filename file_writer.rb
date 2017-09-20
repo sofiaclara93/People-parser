@@ -1,10 +1,10 @@
 require 'csv'
 
 module FileWriter
-  def self.write(users)
-  CSV.open('user_permissions.csv','wb',
+  def self.write(filename, users)
+  CSV.open(filename ,'wb',
       :write_headers=> true,
-      :headers => ["user id","email","newsbeat", "report builder", "headline testing"] #< column header
+      :headers => ["USER ID","EMAIL","DASHBOARD", "REPORT BUILDER", "HEADLINE TESTING"] #< column header
       # :return_headers => true
     ) do|csv|
         users.each do |user|
